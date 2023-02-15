@@ -1,0 +1,36 @@
+import java.util.*;
+import java.io.*;
+public class Main{
+	public static void main(String[] args) throws IOException {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		DD d[] = new DD[n + 1];
+		for(int i = 1; i <= n; i++){
+			double a = sc.nextDouble();
+			double b = sc.nextDouble();
+			d[i] = new DD(a,b);
+		}
+		double max = 0;
+		for(int i = 1; i <= n - 1; i++){
+			for(int j = i + 1; j <= n; j++){
+				double c = Math.sqrt(Math.pow((d[i].getX() - d[j].getX()),2) + Math.pow((d[i].getY() - d[j].getY()),2));
+				if(max < c) max = c;
+			}
+		}
+		System.out.println(max);
+	}
+}
+class DD{
+	private double x;
+	private double y;
+	public DD(double x, double y){
+		this.x = x;
+		this.y = y;
+	}
+	public double getX(){
+		return this.x;
+	}
+	public double getY(){
+		return this.y;
+	}
+}
